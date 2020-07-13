@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"goadb/adb"
+	"github.com/Evrins/goadb/adb"
 	"io"
 	"os"
 	"path/filepath"

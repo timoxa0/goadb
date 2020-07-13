@@ -3,7 +3,7 @@ package adb
 import (
 	"testing"
 
-	"goadb/wire"
+	"github.com/Evrins/goadb/wire"
 
 	"github.com/stretchr/testify/assert"
 )

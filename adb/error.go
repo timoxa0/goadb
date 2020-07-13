@@ -1,6 +1,6 @@
 package adb
 
-import "goadb/internal/errors"
+import "github.com/Evrins/goadb/internal/errors"
 
 type ErrCode errors.ErrCode
 

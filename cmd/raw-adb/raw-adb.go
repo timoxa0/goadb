@@ -5,13 +5,13 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"goadb/adb"
+	"github.com/Evrins/goadb/adb"
 	"io"
 	"log"
 	"os"
 	"strings"
 
-	"goadb/wire"
+	"github.com/Evrins/goadb/wire"
 )
 
 var port = flag.Int("p", adb.AdbPort, "`port` the adb server is listening on")

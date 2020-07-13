@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"goadb/internal/errors"
+	"github.com/Evrins/goadb/internal/errors"
 
 	"github.com/stretchr/testify/assert"
 )
