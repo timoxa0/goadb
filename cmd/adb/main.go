@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
+	"goadb/adb"
 	"io"
 	"os"
 	"path/filepath"
 	"syscall"
 	"time"
 
-	"github.com/cheggaaa/pb"
-	"github.com/zach-klippenstein/goadb"
+	"github.com/cheggaaa/pb/v3"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
 
@@ -99,7 +99,6 @@ func parseDevice() adb.DeviceDescriptor {
 }
 
 func listDevices(long bool) int {
-	//client := adb.New(server)
 	devices, err := client.ListDevices()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error:", err)
@@ -251,24 +250,21 @@ func push(showProgress bool, localPath, remotePath string, device adb.DeviceDesc
 // After copying, final stats about the transfer speed and size are shown.
 // Progress and stats are printed to stderr.
 func copyWithProgressAndStats(dst io.Writer, src io.Reader, size int, showProgress bool) error {
-	var progress *pb.ProgressBar
+	var bar *pb.ProgressBar
 	if showProgress && size > 0 {
-		progress = pb.New(size)
+		bar = pb.New(size)
 		// Write to stderr in case dst is stdout.
-		progress.Output = os.Stderr
-		progress.ShowSpeed = true
-		progress.ShowPercent = true
-		progress.ShowTimeLeft = true
-		progress.SetUnits(pb.U_BYTES)
-		progress.Start()
-		dst = io.MultiWriter(dst, progress)
+		bar.SetWriter(os.Stderr)
+		bar.Set(pb.Bytes, true)
+		bar.Start()
+		dst = bar.NewProxyWriter(dst)
 	}
 
 	startTime := time.Now()
 	copied, err := io.Copy(dst, src)
 
-	if progress != nil {
-		progress.Finish()
+	if bar != nil {
+		bar.Finish()
 	}
 
 	if pathErr, ok := err.(*os.PathError); ok {

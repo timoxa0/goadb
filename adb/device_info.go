@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"strings"
 
-	"github.com/zach-klippenstein/goadb/internal/errors"
+	"goadb/internal/errors"
 )
 
 type DeviceInfo struct {
@@ -66,7 +66,7 @@ func parseDeviceShort(line string) (*DeviceInfo, error) {
 
 func parseDeviceLong(line string) (*DeviceInfo, error) {
 	fields := strings.Fields(line)
-	if len(fields) < 5 {
+	if len(fields) < 4 {
 		return nil, errors.Errorf(errors.ParseError,
 			"malformed device line, expected at least 5 fields but found %d", len(fields))
 	}

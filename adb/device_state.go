@@ -1,6 +1,6 @@
 package adb
 
-import "github.com/zach-klippenstein/goadb/internal/errors"
+import "goadb/internal/errors"
 
 // DeviceState represents one of the 3 possible states adb will report devices.
 // A device can be communicated with when it's in StateOnline.
@@ -15,12 +15,14 @@ const (
 	StateDisconnected
 	StateOffline
 	StateOnline
+	StatUnauthorized
 )
 
 var deviceStateStrings = map[string]DeviceState{
-	"":        StateDisconnected,
-	"offline": StateOffline,
-	"device":  StateOnline,
+	"":             StateDisconnected,
+	"offline":      StateOffline,
+	"device":       StateOnline,
+	"unauthorized": StatUnauthorized,
 }
 
 func parseDeviceState(str string) (DeviceState, error) {

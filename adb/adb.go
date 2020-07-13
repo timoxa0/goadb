@@ -3,15 +3,15 @@ package adb
 import (
 	"strconv"
 
-	"github.com/zach-klippenstein/goadb/internal/errors"
-	"github.com/zach-klippenstein/goadb/wire"
+	"goadb/internal/errors"
+	"goadb/wire"
 )
 
 /*
 Adb communicates with host services on the adb server.
 
 Eg.
-	client := adb.New()
+	client := New()
 	client.ListDevices()
 
 See list of services at https://android.googlesource.com/platform/system/core/+/master/adb/SERVICES.TXT.

@@ -4,12 +4,12 @@ package main
 import (
 	"flag"
 	"fmt"
+	"goadb/adb"
 	"io/ioutil"
 	"log"
 	"time"
 
-	adb "github.com/zach-klippenstein/goadb"
-	"github.com/zach-klippenstein/goadb/internal/errors"
+	"goadb/internal/errors"
 )
 
 var (
