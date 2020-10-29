@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"strings"
 
-	"github.com/Evrins/goadb/internal/errors"
+	"github.com/evrins/goadb/internal/errors"
 )
 
 type DeviceInfo struct {

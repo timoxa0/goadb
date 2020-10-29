@@ -7,8 +7,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/Evrins/goadb/internal/errors"
-	"github.com/Evrins/goadb/wire"
+	"github.com/evrins/goadb/internal/errors"
+	"github.com/evrins/goadb/wire"
 )
 
 const (

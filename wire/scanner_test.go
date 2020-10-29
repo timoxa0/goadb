@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/Evrins/goadb/internal/errors"
+	"github.com/evrins/goadb/internal/errors"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -5,8 +5,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/Evrins/goadb/internal/errors"
-	"github.com/Evrins/goadb/wire"
+	"github.com/evrins/goadb/internal/errors"
+	"github.com/evrins/goadb/wire"
 )
 
 var zeroTime = time.Unix(0, 0).UTC()

@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/Evrins/goadb/internal/errors"
+	"github.com/evrins/goadb/internal/errors"
 )
 
 var (

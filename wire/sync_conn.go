@@ -1,6 +1,6 @@
 package wire
 
-import "github.com/Evrins/goadb/internal/errors"
+import "github.com/evrins/goadb/internal/errors"
 
 const (
 	// Chunks cannot be longer than 64k.

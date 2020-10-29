@@ -1,6 +1,6 @@
 package wire
 
-import "github.com/Evrins/goadb/internal/errors"
+import "github.com/evrins/goadb/internal/errors"
 
 const (
 	// The official implementation of adb imposes an undocumented 255-byte limit
