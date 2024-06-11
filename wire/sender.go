@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/evrins/goadb/internal/errors"
+	"github.com/timoxa0/goadb/internal/errors"
 )
 
 // Sender sends messages to the server.

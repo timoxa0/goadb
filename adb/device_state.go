@@ -1,7 +1,7 @@
 package adb
 
 import (
-	"github.com/evrins/goadb/internal/errors"
+	"github.com/timoxa0/goadb/internal/errors"
 )
 
 // DeviceState represents one of the 3 possible states adb will report devices.

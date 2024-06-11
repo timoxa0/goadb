@@ -1,4 +1,4 @@
-module github.com/evrins/goadb
+module github.com/timoxa0/goadb
 
 go 1.14
 

@@ -3,7 +3,7 @@ package wire
 import (
 	"testing"
 
-	"github.com/evrins/goadb/internal/errors"
+	"github.com/timoxa0/goadb/internal/errors"
 
 	"github.com/stretchr/testify/assert"
 )

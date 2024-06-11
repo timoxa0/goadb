@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/evrins/goadb/wire"
+	"github.com/timoxa0/goadb/wire"
 )
 
 // DirEntry holds information about a directory entry on a device.
