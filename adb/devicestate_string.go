@@ -4,9 +4,9 @@ package adb
 
 import "fmt"
 
-const _DeviceState_name = "StateInvalidStateDisconnectedStateOfflineStateOnline"
+const _DeviceState_name = "StateInvalidStateDisconnectedStateOfflineStateOnlineStateRecovery"
 
-var _DeviceState_index = [...]uint8{0, 12, 29, 41, 52}
+var _DeviceState_index = [...]uint8{0, 12, 29, 41, 52, 65}
 
 func (i DeviceState) String() string {
 	if i < 0 || i >= DeviceState(len(_DeviceState_index)-1) {
