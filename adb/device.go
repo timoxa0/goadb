@@ -80,6 +80,7 @@ func (c *Device) DeviceInfo() (*DeviceInfo, error) {
 RunCommand runs the specified commands on a shell on the device.
 
 From the Android docs:
+
 	Run 'command arg1 arg2 ...' in a shell on the device, and return
 	its output and error streams. Note that arguments must be separated
 	by spaces. If an argument contains a space, it must be quoted with
@@ -87,6 +88,7 @@ From the Android docs:
 	will go very wrong.
 
 	Note that this is the non-interactive version of "adb shell"
+
 Source: https://android.googlesource.com/platform/system/core/+/master/adb/SERVICES.TXT
 
 This method quotes the arguments for you, and will return an error if any of them
@@ -121,12 +123,83 @@ func (c *Device) RunCommand(cmd string, args ...string) (string, error) {
 }
 
 /*
+Forward, from the official adb command's docs:
+
+		Asks the ADB server to forward local connections from <local>
+	  to the <remote> address on a given device.
+	  There, <host-prefix> can be one of the
+	  host-serial/host-usb/host-local/host prefixes as described previously
+	  and indicates which device/emulator to target.
+	  the format of <local> is one of:
+	      tcp:<port>      -> TCP connection on localhost:<port>
+	      local:<path>    -> Unix local domain socket on <path>
+	  the format of <remote> is one of:
+	      tcp:<port>      -> TCP localhost:<port> on device
+	      local:<path>    -> Unix local domain socket on device
+	      jdwp:<pid>      -> JDWP thread on VM process <pid>
+	      vsock:<CID>:<port> -> vsock on the given CID and port
+	  or even any one of the local services described below.
+
+Source: https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/SERVICES.TXT
+*/
+func (c *Device) Forward(local string, remote string) error {
+	req := fmt.Sprintf("forward:%s;%s", local, remote)
+	_, err := c.getAttribute(req)
+	return wrapClientError(err, c, "Forward")
+}
+
+/*
+KillForward, from the official adb command's docs:
+
+	Remove any existing forward local connection from <local>.
+
+Source: https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/SERVICES.TXT
+*/
+func (c *Device) KillForward(local string) error {
+	req := fmt.Sprintf("killforward:%s", local)
+	_, err := c.getAttribute(req)
+	return wrapClientError(err, c, "KillForward")
+}
+
+/*
+KillForwardAll, from the official adb command's docs:
+
+	Remove all forward network connections.
+
+Source: https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/SERVICES.TXT
+*/
+func (c *Device) KillForwardAll() error {
+	req := fmt.Sprintf("killforward-all")
+	_, err := c.getAttribute(req)
+	return wrapClientError(err, c, "KillForward")
+}
+
+/*
+KillForwardAll, from the official adb command's docs:
+
+	Remove all forward network connections.
+
+Source: https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/SERVICES.TXT
+*/
+func (c *Device) ListForward() ([]Forward, error) {
+	req := fmt.Sprintf("list-forward")
+	resp, err := c.getAttribute(req)
+	if err != nil {
+		return nil, wrapClientError(err, c, "ListForwards")
+	}
+	forwards, err := parseForward(resp, c.descriptor.serial)
+	return forwards, wrapClientError(err, c, "ListForwards")
+}
+
+/*
 Remount, from the official adb command’s docs:
+
 	Ask adbd to remount the device's filesystem in read-write mode,
 	instead of read-only. This is usually necessary before performing
 	an "adb sync" or "adb push" request.
 	This request may not succeed on certain builds which do not allow
 	that.
+
 Source: https://android.googlesource.com/platform/system/core/+/master/adb/SERVICES.TXT
 */
 func (c *Device) Remount() (string, error) {
