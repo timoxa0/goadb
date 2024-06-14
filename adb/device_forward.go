@@ -6,34 +6,34 @@ import (
 	"github.com/timoxa0/goadb/internal/errors"
 )
 
-type ForwardType uint8
+type ForwardType int8
 
 const (
 	TypeInvalid ForwardType = iota
-	TCP
-	LOCAL
+	ForwardTCP
+	ForwardLOCAL
 )
 
 var forwardTypeStrings = map[string]ForwardType{
-	"tcp":   TCP,
-	"local": LOCAL,
+	"tcp":   ForwardTCP,
+	"local": ForwardLOCAL,
 }
 
 type ForwardTarget string
 
 type ForwardLocal struct {
-	ftype  ForwardType
-	target ForwardTarget
+	FType   ForwardType
+	FTarget ForwardTarget
 }
 
 type ForwardRemote struct {
-	ftype  ForwardType
-	target ForwardTarget
+	FType   ForwardType
+	FTarget ForwardTarget
 }
 
 type Forward struct {
-	local  ForwardLocal
-	remote ForwardRemote
+	Local  ForwardLocal
+	Remote ForwardRemote
 }
 
 func parseForward(str string, deviceSerial string) ([]Forward, error) {
@@ -48,13 +48,13 @@ func parseForward(str string, deviceSerial string) ([]Forward, error) {
 			raw_local := strings.Split(local, ":")
 			raw_remote := strings.Split(remote, ":")
 			forwards = append(forwards, Forward{
-				local: ForwardLocal{
-					ftype:  forwardTypeStrings[raw_local[0]],
-					target: ForwardTarget(raw_local[1]),
+				Local: ForwardLocal{
+					FType:   forwardTypeStrings[raw_local[0]],
+					FTarget: ForwardTarget(raw_local[1]),
 				},
-				remote: ForwardRemote{
-					ftype:  forwardTypeStrings[raw_remote[0]],
-					target: ForwardTarget(raw_remote[1]),
+				Remote: ForwardRemote{
+					FType:   forwardTypeStrings[raw_remote[0]],
+					FTarget: ForwardTarget(raw_remote[1]),
 				},
 			})
 		}
