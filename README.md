@@ -1,7 +1,5 @@
 #goadb
-
-[![Build Status](https://travis-ci.org/zach-klippenstein/goadb.svg?branch=master)](https://travis-ci.org/zach-klippenstein/goadb)
-[![GoDoc](https://godoc.org/goadb?status.svg)](https://godoc.org/goadb)
+[![GoDoc](https://pkg.go.dev/github.com/timoxa0/goadb?status.svg)](https://pkg.go.dev/github.com/timoxa0/goadb)
 
 A Golang library for interacting with the Android Debug Bridge (adb).
 
