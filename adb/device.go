@@ -169,7 +169,7 @@ KillForwardAll, from the official adb command's docs:
 Source: https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/SERVICES.TXT
 */
 func (c *Device) KillForwardAll() error {
-	req := fmt.Sprintf("killforward-all")
+	req := "killforward-all"
 	_, err := c.getAttribute(req)
 	return wrapClientError(err, c, "KillForward")
 }
@@ -182,7 +182,7 @@ KillForwardAll, from the official adb command's docs:
 Source: https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/SERVICES.TXT
 */
 func (c *Device) ListForward() ([]Forward, error) {
-	req := fmt.Sprintf("list-forward")
+	req := "list-forward"
 	resp, err := c.getAttribute(req)
 	if err != nil {
 		return nil, wrapClientError(err, c, "ListForwards")
