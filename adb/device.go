@@ -175,13 +175,13 @@ func (c *Device) KillForwardAll() error {
 }
 
 /*
-KillForwardAll, from the official adb command's docs:
+ListForwards, from the official adb command's docs:
 
-	Remove all forward network connections.
+	List all existing forward connections from this server.
 
 Source: https://android.googlesource.com/platform/packages/modules/adb/+/refs/heads/main/SERVICES.TXT
 */
-func (c *Device) ListForward() ([]Forward, error) {
+func (c *Device) ListForwards() ([]Forward, error) {
 	req := "list-forward"
 	resp, err := c.getAttribute(req)
 	if err != nil {
