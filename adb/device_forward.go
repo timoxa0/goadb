@@ -2,8 +2,6 @@ package adb
 
 import (
 	"strings"
-
-	"github.com/timoxa0/goadb/internal/errors"
 )
 
 type ForwardType int8
@@ -59,5 +57,5 @@ func parseForward(str string, deviceSerial string) ([]Forward, error) {
 			})
 		}
 	}
-	return forwards, errors.Errorf(errors.ParseError, "invalid device forward")
+	return forwards, nil
 }
